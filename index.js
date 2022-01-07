@@ -1,28 +1,24 @@
 const express = require('express');
-const path = require("path");
-
 const app = express();
+var bodyParser = require("body-parser");
 
-app.use("/meusite",express.static(path.join(__dirname, 'client')));
 
-app.get("/",(req, res)=>{
+
+
+let consoleBody = (req, res, next) =>{
+    console.log(req.body)
+    next()
+}
+
+let hello = ((req, res)=>{
     //res.set("Content-Type", "text/html")
-    res.type("html")
-
-    res.send("<h1>Hello word from GET</h1>")
+res.send('Hello World 2')
 })
 
-app.post("/",(req, res)=>{
-    res.send("<h1>Hello word from POST</h1>")
-})
-
-app.put("/",(req, res)=>{
-    res.send("<h1>Hello word from put</h1>")
-})
-
-app.delete("/",(req, res)=>{
-    res.send("<h1>Hello word from DELETE</h1>")
-})
+app.use("/", bodyParser.json());
+app.use("/", consoleBody);
+app.get("/", hello);
+app.post("/", hello);
 
 const PORT = 5000;
 app.listen(PORT, () => {
