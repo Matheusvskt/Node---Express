@@ -12,6 +12,18 @@ app.get("/",(req, res)=>{
     res.send("<h1>Hello word from GET</h1>")
 })
 
+app.post("/",(req, res)=>{
+    res.send("<h1>Hello word from POST</h1>")
+})
+
+app.put("/",(req, res)=>{
+    res.send("<h1>Hello word from put</h1>")
+})
+
+app.delete("/",(req, res)=>{
+    res.send("<h1>Hello word from DELETE</h1>")
+})
+
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on Port: ${PORT}`)
